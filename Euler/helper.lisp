@@ -12,3 +12,13 @@
        (or (= n 2) (oddp n))
        (loop for i from 3 to (+ 1 (isqrt n))
 	     never (zerop (mod n i)))))
+
+(defun palindromep (list)
+  (equal list (reverse list)))
+
+(defun number-to-list (num &optional (list ()))
+  (cond ((> num 0) (number-to-list (floor num 10) (cons (mod num 10) list)))
+	(t list)))
+
+(defun number-palindrome-p (num)
+  (equal (number-to-list num) (reverse (number-to-list num))))
